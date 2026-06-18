@@ -1,0 +1,41 @@
+sources:
+  football_data:
+    enabled: true
+    start_year: 2017
+    end_year: 2025
+    include_friendlies: true
+
+  elo_ratings:
+    enabled: true
+    # Selecoes para coletar Elo. Se vazio/ausente, sao inferidas de matches.csv.
+    teams: []
+    # Override de slug de URL para selecoes cujo nome no eloratings.net difere
+    # do padrao "espacos -> underscore". Ex.: {"DR Congo": "Congo_DR"}.
+    url_overrides: {}
+
+  fifa_rankings:
+    enabled: true
+    # Coleta a ultima publicacao de cada mes do intervalo. Para o historico
+    # completo, comente start_year/end_year e deixe `months: null`.
+    start_year: 2017
+    end_year: 2025
+    months: null
+
+  transfermarkt:
+    enabled: false   # requer Playwright (pip install ".[transfermarkt]")
+    year: 2025
+    max_pages: 10
+
+# Mapa opcional de padronizacao de nomes de selecoes (origem -> canonico).
+team_name_mapping: configs/team_name_mapping.json
+
+# Pesos por competicao (usados posteriormente no modulo de features).
+competition_weights:
+  "FIFA World Cup": 1.0
+  "UEFA Euro": 0.9
+  "Copa America": 0.9
+  "African Cup of Nations": 0.85
+  "Qualifiers": 0.75
+  "Friendly": 0.5
+
+output_dir: data/raw/
