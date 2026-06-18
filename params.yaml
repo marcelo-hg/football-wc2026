@@ -1,0 +1,11 @@
+# Parametros versionados do pipeline DVC (referenciados em dvc.yaml e configs/).
+# Modelo padrao para as fases seguintes (train/simulate).
+model:
+  name: dixon_coles
+
+features:
+  time_decay_half_life_days: 365
+
+simulation:
+  n_simulations: 50000
+  seed: 42

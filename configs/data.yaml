@@ -29,7 +29,11 @@ sources:
 # Mapa opcional de padronizacao de nomes de selecoes (origem -> canonico).
 team_name_mapping: configs/team_name_mapping.json
 
-# Pesos por competicao (usados posteriormente no modulo de features).
+# Parametros da engenharia de features (modulo features/).
+features:
+  time_decay_half_life_days: 365   # meia-vida do decaimento temporal dos jogos
+
+# Pesos por competicao (usados no modulo de features).
 competition_weights:
   "FIFA World Cup": 1.0
   "UEFA Euro": 0.9
