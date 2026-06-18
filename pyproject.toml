@@ -1,0 +1,59 @@
+[project]
+name = "worldcup2026-predictor"
+version = "0.1.0"
+description = "Modelo preditivo para a Copa do Mundo FIFA 2026 (Dixon-Coles + Monte Carlo)"
+requires-python = ">=3.11"
+
+dependencies = [
+  # dados e computacao
+  "pandas>=2.0",
+  "numpy>=1.26",
+
+  # scraping
+  "requests>=2.31",
+  "beautifulsoup4>=4.12",
+  "lxml>=5.0",
+
+  # CLI e terminal
+  "typer>=0.12",
+  "rich>=13.0",
+
+  # utilitarios
+  "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+# Scraping do Transfermarkt exige renderizacao de JS via navegador headless.
+transfermarkt = [
+  "playwright>=1.40",
+]
+# Dependencias das demais fases (modelagem/simulacao/avaliacao) do plano.
+models = [
+  "scipy>=1.12",
+  "scikit-learn>=1.4",
+  "pymc>=5.10",
+  "arviz>=0.18",
+  "mlflow>=2.12",
+  "dvc>=3.49",
+  "matplotlib>=3.8",
+]
+dev = [
+  "pytest>=8.0",
+  "pytest-cov",
+  "ruff",
+  "black",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["src", "src.scraping", "src.utils"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.black]
+line-length = 100
