@@ -1,0 +1,27 @@
+# Pipeline DVC — Fase 2 (dados). Estagios train/simulate/evaluate serao
+# adicionados nas fases seguintes. Reproduza com: dvc repro
+stages:
+  scrape:
+    cmd: python cli/scrape.py --config configs/data.yaml
+    deps:
+      - cli/scrape.py
+      - src/scraping
+      - configs/data.yaml
+      - configs/team_name_mapping.json
+    outs:
+      - data/raw/matches.csv
+      - data/raw/elo_ratings.csv
+      - data/raw/fifa_rankings.csv
+
+  features:
+    cmd: python cli/features.py --config configs/data.yaml
+    deps:
+      - cli/features.py
+      - src/features
+      - data/raw/matches.csv
+      - data/raw/elo_ratings.csv
+      - data/raw/fifa_rankings.csv
+      - configs/data.yaml
+    outs:
+      - data/processed/matches_features.csv
+      - data/processed/team_strengths.csv
